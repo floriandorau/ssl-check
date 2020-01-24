@@ -13,7 +13,29 @@ const create = function (path) {
     fs.mkdirSync(path);
 };
 
-exports.createIfNotExist = function (...pathParts) {
+const readFileSync = function (filePath) {
+    return fs.readFileSync(filePath, { encoding: 'utf8' });
+};
+
+const getFilesInDir = function (dirpath) {
+    const dirents = fs.readdirSync(dirpath, { withFileTypes: true });
+
+    let files = [];
+    dirents.forEach(dirent => {
+        if (dirent.isDirectory()) {
+            const filesSubDir = getFilesInDir(path.join(dirpath, dirent.name));
+            files = [...files, ...filesSubDir];
+        }
+
+        if (dirent.isFile()) {
+            files.push(path.join(dirpath, dirent.name));
+        }
+    });
+
+    return files;
+};
+
+const createIfNotExist = function (...pathParts) {
     logger.debug(`Check if path '${pathParts}' exists`);
 
     let buildedPath = '';
@@ -29,3 +51,5 @@ exports.createIfNotExist = function (...pathParts) {
     return buildedPath;
 
 };
+
+module.exports = { createIfNotExist, getFilesInDir, readFileSync };

@@ -1,8 +1,10 @@
-logging:
-  level: debug
+severity: high
 output:
   json: true
-  html: true
+  html: false
+  log: false
+logging:
+  level: debug
 urls:
   - https://pegasusgas.uniper-digital.de/client/version
   - https://pegasuspower.uniper-digital.de/client/version

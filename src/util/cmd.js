@@ -22,8 +22,6 @@ const logData = function (data) {
 };
 
 exports.exec = function (cmd, args) {
-    logger.debug(`Running ${cmd} with args:${args}`);
-
     const spawnedProcess = spawn(cmd, args);
     spawnedProcess.stdout.on('data', data => logData(data));
     spawnedProcess.stderr.on('data', data => logData(data));
