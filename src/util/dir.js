@@ -5,13 +5,13 @@ const logger = require('./logger');
 
 const ifNotExists = function (path, callback) {
     if (!fs.existsSync(path)) {
-        callback()
+        callback();
     }
-}
+};
 
 const create = function (path) {
     fs.mkdirSync(path);
-}
+};
 
 exports.createIfNotExist = function (...pathParts) {
     logger.debug(`Check if path '${pathParts}' exists`);
@@ -23,9 +23,9 @@ exports.createIfNotExist = function (...pathParts) {
         ifNotExists(buildedPath, () => {
             logger.debug(`Path ${buildedPath} not exists, creating new`);
             create(buildedPath);
-        })
+        });
     });
 
     return buildedPath;
 
-}
+};

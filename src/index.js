@@ -16,23 +16,13 @@ const startCheckUrls = function (urls, config = {}) {
     });
 
     return Promise.all(promises);
-}
-
-const printReport = function () {
-    logger.info('Starting url check');
-
-
-
-
-}
+};
 
 const run = function () {
     const configFile = config.readConfig();
     startCheckUrls(configFile.urls, configFile)
         .then(() => logger.info('All succeeded'))
         .catch(err => logger.error('Someone failed', err));
-
-
-}
+};
 
 run();

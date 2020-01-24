@@ -29,15 +29,25 @@ const _checkEndpoint = function (endpointUrl, { jsonPath, htmlPath, logPath }) {
 
     return cmd.exec('bash', [...args, endpointUrl.href])
         .catch(err => logger.error(`Error while checking endpoint '${endpointUrl.href}'`, err));
-}
+};
 
-exports.checkEndpoint = function (url, output = { html: false, json: false }) {
+exports.checkEndpoint = function (url, output = { log: true, html: false, json: false }) {
     logger.info(`Running ssl endpoint check for '${url}'`);
 
     const endpointUrl = new URL(url);
-    return _checkEndpoint(endpointUrl, {
-        jsonPath: output.json && createIfNotExist(rootDir, 'output', 'json', endpointUrl.hostname),
-        htmlPath: output.html && createIfNotExist(rootDir, 'output', 'html', endpointUrl.hostname),
-        logPath: createIfNotExist(rootDir, 'log', endpointUrl.hostname)
-    })
-}
+    let options = {};
+
+    if (output.log) {
+        options.logPath = createIfNotExist(rootDir, 'output', 'log', endpointUrl.hostname);
+    }
+
+    if (output.json) {
+        options.jsonPath = createIfNotExist(rootDir, 'output', 'json', endpointUrl.hostname);
+    }
+
+    if (output.html) {
+        options.htmlPath = createIfNotExist(rootDir, 'output', 'html', endpointUrl.hostname);
+    }
+
+    return _checkEndpoint(endpointUrl, options);
+};
