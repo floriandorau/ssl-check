@@ -8,5 +8,4 @@ RUN curl -L https://github.com/drwetter/testssl.sh/archive/3.0.zip -o /ssltest/t
 
 WORKDIR /ssltest
 
-#ENTRYPOINT ["sh", "./docker-entrypoint.sh"]
-ENTRYPOINT ["sh", "./run.sh"]
+ENTRYPOINT ["sh", "./run.js"]

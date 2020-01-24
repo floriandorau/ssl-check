@@ -2,10 +2,16 @@
 
 const testssl = require('./testssl');
 const report = require('./report');
-const config = require('./config');
-const logger = require('./util/logger');
+const DEFAULT_OPTIONS = {
+    severity: 'LOW',
+    output: {
+        json: false,
+        html: false,
+        log: false
+    }
+};
 
-const startCheckUrls = function (urls, options) {
+const runTest = function ({ urls, options = DEFAULT_OPTIONS }) {
     const promises = [];
 
     urls.forEach(url => {
@@ -16,17 +22,8 @@ const startCheckUrls = function (urls, options) {
     return Promise.all(promises);
 };
 
-const printReport = function ({ output }) {
-    report.printReport(output);
+const getTestReport = function (options = { json: false, html: false }) {
+    return report.printReport(options);
 };
 
-
-const run = function () {
-    const configFile = config.readConfig();
-
-    startCheckUrls(configFile.urls, configFile)
-        .then(() => printReport(configFile))
-        .catch(err => logger.error('Someone failed', err));
-};
-
-run();
+module.exports = { runTest, getTestReport };
