@@ -1,0 +1,13 @@
+.env
+.cache
+.DS_Store
+.vscode
+*.log
+
+package-lock.json
+
+node_modules/
+output/
+log/
+
+bin/testssl.sh-*
