@@ -25,7 +25,7 @@ const run = function () {
     const configFile = config.readConfig();
 
     startCheckUrls(configFile.urls, configFile)
-        .then(() => printReport(configFile.output))
+        .then(() => printReport(configFile))
         .catch(err => logger.error('Someone failed', err));
 };
 
