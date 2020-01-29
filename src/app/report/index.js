@@ -1,11 +1,12 @@
-const logger = require('../util/logger');
+const logger = require('../../util/logger');
 const reportJson = require('./report-json');
 
 exports.printReport = function (options = { log: false, html: false, json: false }) {
     console.dir(options);
     if (options.json) {
         logger.info('Printing json report');
-        reportJson.report();
+        const reportStream = reportJson.report();
+        reportStream.on('data', (data) => console.log('<-', data));
     }
 
     if (options.html) {
@@ -14,5 +15,12 @@ exports.printReport = function (options = { log: false, html: false, json: false
 
     if (options.log) {
         throw new Error('log report not supported yet');
+    }
+};
+
+exports.getReport = function (hostname, options = { json: false }) {
+    if (options.json) {
+        logger.info('Printing json report');
+        return reportJson.report(hostname, options);
     }
 };

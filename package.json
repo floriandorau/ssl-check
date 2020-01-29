@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/run.js",
+    "start:server": "node ./bin/server.js",
     "lint": "eslint ./src"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "pkg-dir": "^4.2.0",
     "yaml": "^1.7.2"
   },

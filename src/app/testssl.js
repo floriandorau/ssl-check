@@ -1,9 +1,9 @@
 const pkgDir = require('pkg-dir');
 const path = require('path');
 
-const cmd = require('./util/cmd');
-const logger = require('./util/logger');
-const { createIfNotExist } = require('./util/dir');
+const cmd = require('../util/cmd');
+const logger = require('../util/logger');
+const { createIfNotExist } = require('../util/dir');
 
 const rootDir = pkgDir.sync(__dirname);
 

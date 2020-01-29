@@ -3,7 +3,7 @@ const path = require('path');
 const YAML = require('yaml');
 const pkgDir = require('pkg-dir');
 
-const logger = require('./util/logger');
+const logger = require('../util/logger');
 
 const rootDir = pkgDir.sync(__dirname);
 
