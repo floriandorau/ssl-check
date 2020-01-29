@@ -20,7 +20,12 @@ exports.printReport = function (options = { log: false, html: false, json: false
 
 exports.getReport = function (hostname, options = { json: false }) {
     if (options.json) {
-        logger.info('Printing json report');
         return reportJson.report(hostname, options);
+    }
+};
+
+exports.listReport = function (options = { json: false }) {
+    if (options.json) {
+        return reportJson.list();
     }
 };

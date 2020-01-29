@@ -29,8 +29,9 @@ const report = function (hostname) {
     });
 
     files.forEach(file => stream.push(file));
-    return stream;
 
+    return stream;
 };
+
 
 module.exports = { report };
