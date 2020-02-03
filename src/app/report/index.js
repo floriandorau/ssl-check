@@ -2,7 +2,6 @@ const logger = require('../../util/logger');
 const reportJson = require('./report-json');
 
 exports.printReport = function (options = { log: false, html: false, json: false }) {
-    console.dir(options);
     if (options.json) {
         logger.info('Printing json report');
         const reportStream = reportJson.report();
