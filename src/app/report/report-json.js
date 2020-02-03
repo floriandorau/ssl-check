@@ -10,7 +10,7 @@ const rootDir = pkgDir.sync(__dirname);
 
 const readFiles = function ({ dir }) {
     const files = [];
-    getFilesInDir(dir)
+    getFilesInDir(dir, { recursive: true })
         .map(file => readFileSync(file))
         .map(file => JSON.parse(file))
         .forEach(file => files.push(file));

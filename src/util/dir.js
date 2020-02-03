@@ -17,12 +17,12 @@ const readFileSync = function (filePath) {
     return fs.readFileSync(filePath, { encoding: 'utf8' });
 };
 
-const getFilesInDir = function (dirpath) {
+const getFilesInDir = function (dirpath, options = { recursive: false }) {
     const dirents = fs.readdirSync(dirpath, { withFileTypes: true });
 
     let files = [];
     dirents.forEach(dirent => {
-        if (dirent.isDirectory()) {
+        if (dirent.isDirectory() && options.recursive) {
             const filesSubDir = getFilesInDir(path.join(dirpath, dirent.name));
             files = [...files, ...filesSubDir];
         }
