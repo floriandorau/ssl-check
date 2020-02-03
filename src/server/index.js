@@ -16,7 +16,6 @@ const start = async function () {
     logger.info('Starting ssl-test-app');
 
     app.get('/output/', (req, res) => {
-        console.log(req.headers.host)
         const dir = path.join(rootDir, 'output', 'json');
         const files = getFilesInDir(dir);
         res.send(files
