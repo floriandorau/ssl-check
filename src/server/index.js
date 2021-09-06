@@ -7,7 +7,7 @@ const pkgDir = require('pkg-dir');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const helmet = express('helmet');
+const helmet = require('helmet');
 const serveStatic = require('serve-static');
 
 const start = async function () {
