@@ -7,6 +7,7 @@ const pkgDir = require('pkg-dir');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const helmet = express('helmet');
 const serveStatic = require('serve-static');
 
 const start = async function () {
@@ -14,6 +15,7 @@ const start = async function () {
     const rootDir = pkgDir.sync(__dirname);
 
     const app = express();
+    app.use(helmet());
 
     logger.info('Starting ssl-test-app');
 

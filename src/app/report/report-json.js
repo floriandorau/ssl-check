@@ -25,7 +25,9 @@ const report = function (hostname) {
 
     const stream = new Readable({
         objectMode: true,
-        read() { }
+        read() {
+            // this is intentional
+        }
     });
 
     files.forEach(file => stream.push(file));

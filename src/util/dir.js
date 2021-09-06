@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('path');
+const { join } = require('path');
 
 const logger = require('./logger');
 
@@ -23,12 +23,12 @@ const getFilesInDir = function (dirpath, options = { recursive: false }) {
     let files = [];
     dirents.forEach(dirent => {
         if (dirent.isDirectory() && options.recursive) {
-            const filesSubDir = getFilesInDir(path.join(dirpath, dirent.name));
+            const filesSubDir = getFilesInDir(join(dirpath, dirent.name));
             files = [...files, ...filesSubDir];
         }
 
         if (dirent.isFile()) {
-            files.push(path.join(dirpath, dirent.name));
+            files.push(join(dirpath, dirent.name));
         }
     });
 
@@ -40,7 +40,7 @@ const createIfNotExist = function (...pathParts) {
 
     let buildedPath = '';
     pathParts.forEach(part => {
-        buildedPath = path.join(buildedPath, part);
+        buildedPath = join(buildedPath, part);
 
         ifNotExists(buildedPath, () => {
             logger.debug(`Path ${buildedPath} not exists, creating new`);
